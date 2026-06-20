@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>澳门六合彩 · 信息卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f8f9fa;
+      color: #1e1f22;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      padding: 2rem 1.25rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 680px;
+      width: 100%;
+    }
+
+    /* 主视觉 ———— 极简留白卡片 */
+    .hero {
+      background: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: 28px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 20px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #0b0c0e;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #4a4b50;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      margin-top: 1.25rem;
+      background: #eef0f3;
+      color: #1f2937;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+
+    /* 通用章节 */
+    .section {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2rem 2.25rem;
+      margin-bottom: 1.75rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .section h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #111318;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1.5px solid #f0f1f3;
+    }
+
+    .section p {
+      color: #2e2f34;
+      margin-bottom: 1rem;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 用途卡片 ———— 三列简洁卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .card-item {
+      background: #f6f7f9;
+      border-radius: 18px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .card-item .emoji {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-item h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #141517;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-item p {
+      font-size: 0.82rem;
+      color: #5b5d63;
+      line-height: 1.4;
+    }
+
+    /* 人群列表 */
+    .audience-list {
+      list-style: none;
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .audience-list li {
+      display: inline-block;
+      background: #edeff3;
+      border-radius: 40px;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem 0.4rem 0.25rem 0;
+      font-size: 0.85rem;
+      color: #1b1c21;
+    }
+
+    .audience-list li::before {
+      content: "· ";
+      font-weight: 300;
+      color: #6b6e79;
+    }
+
+    /* 提示区块 */
+    .tip-box {
+      background: #f1f3f6;
+      border-radius: 18px;
+      padding: 1.2rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .tip-box strong {
+      color: #0f1115;
+      font-weight: 500;
+    }
+
+    .tip-box p {
+      font-size: 0.9rem;
+      color: #2b2d33;
+      margin-bottom: 0.3rem;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      border-bottom: 1px solid #edeef0;
+      padding: 0.9rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-item .question {
+      font-weight: 500;
+      color: #181a1f;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-item .answer {
+      font-size: 0.9rem;
+      color: #52545b;
+    }
+
+    /* 自然链接段落专用 */
+    .link-embed {
+      background: #fbfcfd;
+      border-left: 3px solid #d0d3db;
+      padding: 1rem 1.5rem;
+      border-radius: 0 16px 16px 0;
+      margin: 1.5rem 0 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    a {
+      color: #1d4a8b;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid rgba(29, 74, 139, 0.15);
+      transition: border-color 0.15s;
+    }
+
+    a:hover {
+      border-bottom-color: #1d4a8b;
+    }
+
+    /* 响应式 */
+    @media (max-width: 540px) {
+      body {
+        padding: 1.5rem 1rem 3rem;
+      }
+      .hero {
+        padding: 2rem 1.25rem;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .section {
+        padding: 1.5rem 1.25rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .card-item {
+        padding: 1rem 0.75rem;
+      }
+      .audience-list li {
+        font-size: 0.8rem;
+      }
+      .link-embed {
+        padding: 0.9rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HERO 主视觉 -->
+    <div class="hero">
+      <h1>澳门六合彩</h1>
+      <p>信息聚合 · 持续关注 · 再次访问</p>
+      <div class="badge">收藏·回访·沉淀</div>
+    </div>
+
+    <!-- 用途卡片 -->
+    <div class="section">
+      <h2>使用场景</h2>
+      <div class="card-grid">
+        <div class="card-item">
+          <span class="emoji">📌</span>
+          <h3>再次访问</h3>
+          <p>保存至书签，快速回到信息首页，无需重复搜索。</p>
+        </div>
+        <div class="card-item">
+          <span class="emoji">🔖</span>
+          <h3>收藏参考</h3>
+          <p>将常用页面加入收藏夹，保持更新追踪。</p>
+        </div>
+        <div class="card-item">
+          <span class="emoji">🔄</span>
+          <h3>持续关注</h3>
+          <p>定期回访，浏览内容变化，不错过动态。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 适合人群（简洁标签） -->
+    <div class="section">
+      <h2>适合人群</h2>
+      <ul class="audience-list">
+        <li>习惯使用书签的用户</li>
+        <li>对内容有持续需求</li>
+        <li>定期回头查阅</li>
+        <li>希望保持信息连贯</li>
+        <li>注重效率与回溯</li>
+      </ul>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: #484a50;">
+        无论你是初次接触，还是希望将页面保留为固定参考点，都可以通过收藏或记录的方式，保持访问路径清晰。
+      </p>
+    </div>
+
+    <!-- 自然链接段落 · 嵌入澳门六合彩 -->
+    <div class="section">
+      <h2>关于收藏与回访</h2>
+      <div class="link-embed">
+        <p>
+          如果你希望将 <a href="https://page--macaujc.com">澳门六合彩</a> 作为日常参考的固定页面，推荐使用浏览器的书签功能或笔记工具保存链接。这样在需要再次查阅时，可以直接从收藏夹打开，无需重新搜索或记忆地址。
+        </p>
+      </div>
+      <p style="margin-top: 1rem;">
+        将常用页面固定在浏览器标签栏、收藏夹目录，或者记录在你的笔记管理工具中，都是保持访问连贯性的有效方法。对于经常需要回顾的内容，「收藏」比实时搜索更稳定、更专注。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要 + 提示 -->
+    <div class="section">
+      <h2>常见疑问 · 摘要</h2>
+      <div class="faq-item">
+        <div class="question">如何快速回到这个页面？</div>
+        <div class="answer">将地址添加到浏览器书签（Ctrl+D / Cmd+D），或直接收藏本页。</div>
+      </div>
+      <div class="faq-item">
+        <div class="question">推荐使用什么方式保存？</div>
+        <div class="answer">浏览器书签栏、收藏夹文件夹，或使用笔记类应用添加链接。</div>
+      </div>
+      <div class="faq-item">
+        <div class="question">页面内容会变化吗？</div>
+        <div class="answer">内容不定期更新，保持关注即可看到最新卡片与信息。</div>
+      </div>
+
+      <div class="tip-box">
+        <strong>提示</strong>
+        <p>收藏后建议每隔一段时间回访，以获取最新内容。把链接放在触手可及的位置，能有效减少查找成本。</p>
+      </div>
+    </div>
+
+    <!-- 结尾 简洁 -->
+    <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: #888b92; border-top: 1px solid #e9eaed; padding-top: 2rem;">
+      保持访问 · 收藏即回访
+    </div>
+
+  </div>
+</body>
+</html>
